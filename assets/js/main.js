@@ -51,7 +51,10 @@ const app = {
         console.log(app.num);
     },
     prev: function () {
-        
+        $('#game').empty();
+        app.num --;
+        app.showQuestions();
+        console.log(app.num);
     }
 }
 
