@@ -1,1 +1,14 @@
 /*  */
+*{
+    margin: 0 auto;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: #fff3ec;
+}
+
+.letter{
+    width: 30px;
+}

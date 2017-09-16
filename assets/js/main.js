@@ -27,21 +27,25 @@ const app = {
             return Math.random() - 0.5
         });
         // console.log(choice);
-        // for(let i in app.allQuestions){
+        const letters = ['assets/img/a.gif' ,'assets/img/b.gif' ,'assets/img/c.gif' ];
         let h2 = document.createElement('h2');
         h2.innerHTML = app.allQuestions['question'+app.num].question;
         let divChoices = document.createElement('div');
         for(let j in app.allQuestions['question'+app.num].choices){
             let Qchoices = app.allQuestions['question'+app.num].choices;
-            let input = document.createElement('input');
-                input
-            // console.log(Qchoices[choice[j]]);
-            input.setAttribute('value',Qchoices[choice[j]]);
-            divChoices.appendChild(input);
+            let options = document.createElement('button');
+            let optionsLetter = document.createElement('img');
+                optionsLetter.src = letters[j];
+                optionsLetter.setAttribute('class','letter');
+            let optionsText = document.createTextNode(Qchoices[choice[j]]);
+            
+            options.appendChild(optionsLetter);
+            options.appendChild(optionsText);
+            
+            divChoices.appendChild(options);
         }
         divQuestion.appendChild(h2);
         divQuestion.appendChild(divChoices);
-        // }
         $('#game').append(divQuestion);
     },
     next: function () {
