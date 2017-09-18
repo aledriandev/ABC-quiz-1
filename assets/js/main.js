@@ -47,7 +47,7 @@ const app = {
                     <button class='btn-question' id='${choice[j]}'>
                         <img class='letter' src=${letters[j]} alt="">
                         <p>${Qchoices[choice[j]]}</p>
-                        <img class='check' src='assets/img/check.ico'>
+                        <div id='check${choice[j]}' class='div-check'></div>
                         <div class='div-option'></div>
                     </button>
                 </div>`;
@@ -83,28 +83,30 @@ const app = {
     },
     
     answersUser: function () {
+        let check = `<img class='check' src='assets/img/check.ico'>`;
         $("button").click((e)=>{
-            console.log(e.target.parentNode.id);
+            let id = e.target.parentNode.id;
+
+            $(`#check${e.target.parentNode.id}`).append(check);
+
             app.answers.push({
                 question: app.num,
-                answer: e.target.parentNode.id
+                answer: id
             });
+
             if (e.target.parentNode.id == 0) {
                 app.result.correct.push({
                     question: app.num,
-                    answer: e.target.parentNode.id
+                    answer: id
                 });
             }else{
                 app.result.incorrect.push({
                     question: app.num,
-                    answer: e.target.parentNode.id
+                    answer: id
                 });
             }
-            
-            // $(`this:parent:nth-child(3)`).show(200);
+
             setTimeout(app.chosen,1000);
-         
-            
         })
     },
 
