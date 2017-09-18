@@ -83,7 +83,7 @@ const app = {
             });
             
             // $(`this:parent:nth-child(3)`).show(200);
-            // setTimeout(app.chosen,1000);
+            setTimeout(app.chosen,1000);
          
             
         })
@@ -97,7 +97,7 @@ const app = {
             let list = `<p>${index}. ${app.allQuestions['question'+(parseInt(index)+1)].question}: <b>${app.allQuestions['question'+(parseInt(index)+1)].choices[parseInt(app.answers[index].answer)]}</b></p>`;
             $('#abc-game').append(list);
         }
-        // $('#game').hide();
+        $('#game').hide();
     }
 }
 
