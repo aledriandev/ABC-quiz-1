@@ -11,10 +11,7 @@ const app = {
 
     answers: [],
 
-    result:{
-        correct: [],
-        incorrect: []
-    },
+    correct: [],
 
     allQuestions : {
         question1 : new Questions ('Which is the oldest airline in the world?','KLM', 'Abianca', 'Qantas'),
@@ -27,7 +24,7 @@ const app = {
     setup: function () {
         $('#next').click(app.next);
         $('#prev').click(app.prev);
-        $('#submitAnswers').click(app.submitAnswers);
+
     },
     
     showQuestions : function(){
@@ -95,12 +92,7 @@ const app = {
             });
 
             if (e.target.parentNode.id == 0) {
-                app.result.correct.push({
-                    question: app.num,
-                    answer: id
-                });
-            }else{
-                app.result.incorrect.push({
+                app.correct.push({
                     question: app.num,
                     answer: id
                 });
@@ -113,7 +105,6 @@ const app = {
     allAnswers: function() {
         let title = `<h3>Here are you answers:</h3>`;
         $('#abc-game').append(title);
-        let option = app.allQuestions;
         for( let index in app.answers){
             let list = `<p>${parseInt(index)+1}. ${app.allQuestions['question'+(parseInt(index)+1)].question}: 
             <b>${app.allQuestions['question'+(parseInt(index)+1)].choices[parseInt(app.answers[index].answer)]}</b></p>`;
@@ -121,11 +112,37 @@ const app = {
         }
         let submit = `<button id='submitAnswers'>Submit</button>`;
         $('#abc-game').append(submit);
+        $('#submitAnswers').click(app.submitAnswers);
         $('#game').hide();
     },
 
     submitAnswers: function() {
-
+        $('#abc-game').empty();
+        let correct = app.correct.length;
+        let total = app.answers.length;
+        let title = `<h3>${correct} out of ${total} correct!</h3>`;
+        $('#abc-game').append(title);
+        for( let i in app.answers){
+            let classAnswer = '';
+            let list = ``;
+            for( let j in app.correct){
+                if((app.answers[i].question == app.correct[j].question) & (app.answers[i].answer == app.correct[j].answer)){
+                    list = `<p class='correct'>
+                                ${parseInt(i)+1}. ${app.allQuestions['question'+(parseInt(i)+1)].question}: 
+                                <b>${app.allQuestions['question'+(parseInt(i)+1)].choices[parseInt(app.answers[i].answer)]}</b>
+                            </p>`;
+                }else{
+                    list = `<p class='incorrect'>
+                                <del>${parseInt(i)+1}. ${app.allQuestions['question'+(parseInt(i)+1)].question}: 
+                                <b>${app.allQuestions['question'+(parseInt(i)+1)].choices[parseInt(app.answers[i].answer)]}</b></del>
+                                ${app.allQuestions['question'+(parseInt(i)+1)].choices[0]}
+                            </p>`;
+                }
+                $('#abc-game').append(list);
+            }
+        }
+        let again = `<button id='startAgain'>Start Again</button>`;
+        $('#abc-game').append(again);
     }
 }
 
