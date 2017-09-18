@@ -70,8 +70,6 @@ const app = {
             app.showQuestions();
             // console.log(app.num);
             app.answersUser();
-
-            
         }
     },
 
@@ -149,6 +147,16 @@ const app = {
         let again = `<button class='btn-quiz' id='startAgain'>Start Again</button>`;
         $('#again').append(again);
         $('#startAgain').click(app.startAgain);
+    },
+
+    startAgain: function () {
+        app.num= 1;
+        app.answers= [];
+        app.correct= [];
+        $('#again').hide();
+        $('#choices').empty();
+        $('#game').show();
+        app.showQuestions();
     }
 }
 
