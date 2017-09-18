@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Cuprum:400,700|Oswald:400,700');
+@import url('https://fonts.googleapis.com/css?family=Lato:400,700,900');
 /*  */
 *{
     margin: 0 auto;
@@ -6,8 +7,13 @@
     box-sizing: border-box;
 }
 
-body{
-    background-color: #fff3ec;
+body {
+    background-color: #FAE4D8;
+    font-family: 'Lato';
+}
+
+h4 {
+    font-size: 196%;
 }
 
 .letter{
@@ -28,9 +34,9 @@ body{
     /* justify-content: space-between; */
     align-items: center;
     font-family: 'Oswald';
-    font-size: 200%;
+    font-size: 160%;
     font-weight: bold;
-    margin:20px 0;
+    margin:5px 0;
     position: relative;
 }
 
@@ -59,3 +65,12 @@ body{
     padding-top: 3%;
     width: 65%;
 }
+
+.correct{
+    color: #4F864F;
+}
+
+.incorrect{
+    color: #B63838;
+}
+

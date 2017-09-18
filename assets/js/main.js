@@ -53,6 +53,12 @@ const app = {
     },
 
     next: function () {
+        let progressText = `${app.num} of 5 answered`;
+        $('#textProgress').html(progressText);
+        $('#progressBar').empty();
+        let progress = (app.num)*20;
+        let progressBar = `<div class="progress-bar progress-bar-success" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: ${progress}%"></div>`
+        $('#progressBar').append(progressBar);
         if(app.num == 5){
             app.allAnswers();
         } else {
@@ -62,6 +68,7 @@ const app = {
             app.showQuestions();
             // console.log(app.num);
             app.answersUser();
+
             
         }
     },
@@ -84,20 +91,19 @@ const app = {
         $("button").click((e)=>{
             let id = e.target.parentNode.id;
 
-            $(`#check${e.target.parentNode.id}`).append(check);
 
+
+            $(`#check${e.target.parentNode.id}`).append(check);
             app.answers.push({
                 question: app.num,
                 answer: id
             });
-
             if (e.target.parentNode.id == 0) {
                 app.correct.push({
                     question: app.num,
                     answer: id
                 });
             }
-
             setTimeout(app.chosen,1000);
         })
     },
@@ -143,6 +149,7 @@ const app = {
         }
         let again = `<button id='startAgain'>Start Again</button>`;
         $('#abc-game').append(again);
+        $('#startAgain').click(app.startAgain);
     }
 }
 
