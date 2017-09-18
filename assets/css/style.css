@@ -105,13 +105,13 @@ h4 {
     background-color: white;
     border-radius: 10px;
     padding-top: 20px;
+    padding-bottom: 20px;
 }
 
 #social{
     display: flex;
     justify-content: space-around;
     padding: 0 200px;
-    padding-bottom: 50px;
 }
 
 .circle{
@@ -140,4 +140,8 @@ h4 {
     padding: 10px;
     border-radius: 50%;
     background-color: #DA4141;
+}
+
+#abc-game>img{
+    width: 20%;
 }
