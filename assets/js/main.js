@@ -36,7 +36,12 @@ const app = {
         
         let Qchoices = app.allQuestions['question'+app.num].choices;
         for(let j in Qchoices){
-            let options = `<button id='${j}'><img class='letter' src=${letters[j]} alt="">${Qchoices[choice[j]]}</button>`
+            let options =   
+                `<div class='col-lg-4 col-md-4 col-sm-6 col-xs-12'>
+                    <button class='btn-question' id='${j}'>
+                        <img class='letter' src=${letters[j]} alt=""><p>${Qchoices[choice[j]]}</p><img class='check' src='assets/img/check.ico'>
+                    </button>
+                </div>`;
             $('#choices').append(options);
         }
     },
@@ -59,12 +64,24 @@ const app = {
         app.answersUser();
     },
 
-    answersUser : function () {app.answers.push({
-        question: app.num,
-        answer: $("button").click((e)=>{
-            return e.target.id
+    chosen: function () {
+        app.next();
+    },
+    
+    answersUser : function () {
+        $("button").click((e)=>{
+            console.log(e.target.id);
+            app.answers.push({
+                question: app.num,
+                answer: e.target.id
+            });
+            let check = `<img src='assets/img/check.ico'>`;
+            setTimeout(function() {
+                e.target.fadeIn(1500);
+            },1000);
+            setTimeout(app.chosen,1000);
         })
-    })},
+    },
 }
 
 $(document).ready(function(){

@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css?family=Cuprum:400,700|Oswald:400,700');
 /*  */
 *{
     margin: 0 auto;
@@ -10,5 +11,36 @@ body{
 }
 
 .letter{
-    width: 30px;
+    width: 40px;
+}
+
+#choices{
+    padding: 50px;
+    position: relative;
+    /* display: flex;
+    justify-content: space-around; */
+}
+
+.btn-question{
+    width: 100%;
+    padding: 0 5px;
+    display: flex;
+    /* justify-content: space-between; */
+    align-items: center;
+    font-family: 'Oswald';
+    font-size: 200%;
+    font-weight: bold;
+}
+
+.btn-answer{
+    background-color: rgb(216, 144, 51);
+}
+
+.btn-question .check{
+    width: 35px;
+}
+
+.btn-question p{
+    padding-top: 3%;
+    width: 65%;
 }
