@@ -11,6 +11,11 @@ const app = {
 
     answers: [],
 
+    result:{
+        correct: [],
+        incorrect: []
+    },
+
     allQuestions : {
         question1 : new Questions ('Which is the oldest airline in the world?','KLM', 'Abianca', 'Qantas'),
         question2 : new Questions ('Which is the largest port in the world?','Port of Shanghai', 'Port de Singapore', 'Port of Rotterdam'),
@@ -22,6 +27,7 @@ const app = {
     setup: function () {
         $('#next').click(app.next);
         $('#prev').click(app.prev);
+        $('#submitAnswers').click(app.submitAnswers);
     },
     
     showQuestions : function(){
@@ -39,7 +45,9 @@ const app = {
             let options =   
                 `<div class='col-lg-4 col-md-4 col-sm-6 col-xs-12'>
                     <button class='btn-question' id='${choice[j]}'>
-                        <img class='letter' src=${letters[j]} alt=""><p>${Qchoices[choice[j]]}</p><img class='check' src='assets/img/check.ico'>
+                        <img class='letter' src=${letters[j]} alt="">
+                        <p>${Qchoices[choice[j]]}</p>
+                        <img class='check' src='assets/img/check.ico'>
                         <div class='div-option'></div>
                     </button>
                 </div>`;
@@ -81,6 +89,17 @@ const app = {
                 question: app.num,
                 answer: e.target.parentNode.id
             });
+            if (e.target.parentNode.id == 0) {
+                app.result.correct.push({
+                    question: app.num,
+                    answer: e.target.parentNode.id
+                });
+            }else{
+                app.result.incorrect.push({
+                    question: app.num,
+                    answer: e.target.parentNode.id
+                });
+            }
             
             // $(`this:parent:nth-child(3)`).show(200);
             setTimeout(app.chosen,1000);
@@ -94,10 +113,17 @@ const app = {
         $('#abc-game').append(title);
         let option = app.allQuestions;
         for( let index in app.answers){
-            let list = `<p>${index}. ${app.allQuestions['question'+(parseInt(index)+1)].question}: <b>${app.allQuestions['question'+(parseInt(index)+1)].choices[parseInt(app.answers[index].answer)]}</b></p>`;
+            let list = `<p>${parseInt(index)+1}. ${app.allQuestions['question'+(parseInt(index)+1)].question}: 
+            <b>${app.allQuestions['question'+(parseInt(index)+1)].choices[parseInt(app.answers[index].answer)]}</b></p>`;
             $('#abc-game').append(list);
         }
+        let submit = `<button id='submitAnswers'>Submit</button>`;
+        $('#abc-game').append(submit);
         $('#game').hide();
+    },
+
+    submitAnswers: function() {
+
     }
 }
 
