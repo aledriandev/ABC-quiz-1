@@ -129,25 +129,24 @@ const app = {
         let title = `<h3>${correct} out of ${total} correct!</h3>`;
         $('#abc-game').append(title);
         for( let i in app.answers){
-            let classAnswer = '';
+            
             let list = ``;
-            for( let j in app.correct){
-                if((app.answers[i].question == app.correct[j].question) & (app.answers[i].answer == app.correct[j].answer)){
-                    list = `<p class='correct'>
-                                ${parseInt(i)+1}. ${app.allQuestions['question'+(parseInt(i)+1)].question}: 
-                                <b>${app.allQuestions['question'+(parseInt(i)+1)].choices[parseInt(app.answers[i].answer)]}</b>
-                            </p>`;
-                }else{
-                    list = `<p class='incorrect'>
-                                <del>${parseInt(i)+1}. ${app.allQuestions['question'+(parseInt(i)+1)].question}: 
-                                <b>${app.allQuestions['question'+(parseInt(i)+1)].choices[parseInt(app.answers[i].answer)]}</b></del>
-                                ${app.allQuestions['question'+(parseInt(i)+1)].choices[0]}
-                            </p>`;
-                }
-                $('#abc-game').append(list);
+            if( app.correct.indexOf(app.correct[parseInt(i)]) != -1){
+                list = `<p class='correct'>
+                            ${parseInt(i)+1}. ${app.allQuestions['question'+(parseInt(i)+1)].question}: 
+                            <b>${app.allQuestions['question'+(parseInt(i)+1)].choices[parseInt(app.answers[i].answer)]}</b>
+                        </p>`;
+            }else{
+                list = `<p class='incorrect'>
+                            <del>${parseInt(i)+1}. ${app.allQuestions['question'+(parseInt(i)+1)].question}: 
+                            <b>${app.allQuestions['question'+(parseInt(i)+1)].choices[parseInt(app.answers[i].answer)]}</b></del>
+                            ${app.allQuestions['question'+(parseInt(i)+1)].choices[0]}
+                        </p>`;
             }
+            $('#abc-game').append(list);
+           
         }
-        let again = `<button id='startAgain'>Start Again</button>`;
+        let again = `<button class='btn-' id='startAgain'>Start Again</button>`;
         $('#abc-game').append(again);
         $('#startAgain').click(app.startAgain);
     }
