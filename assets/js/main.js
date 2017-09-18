@@ -8,10 +8,11 @@ function Questions (question, correct, wrong1,wrong2){
 
 const app = {
     num: 1,
-
     answers: [],
-
     correct: [],
+    indexAnswers: [],
+    indexCorrect: [],
+
 
     allQuestions : {
         question1 : new Questions ('Which is the oldest airline in the world?','KLM', 'Abianca', 'Qantas'),
@@ -127,9 +128,8 @@ const app = {
         let title = `<h3>${correct} out of ${total} correct!</h3>`;
         $('#again').append(title);
         for( let i in app.answers){
-            
             let list = ``;
-            if( app.correct.indexOf(app.correct[parseInt(i)]) != -1){
+            if( app.answers[i].answer == 0){
                 list = `<p class='correct'>
                             ${parseInt(i)+1}. ${app.allQuestions['question'+(parseInt(i)+1)].question}: 
                             <b>${app.allQuestions['question'+(parseInt(i)+1)].choices[parseInt(app.answers[i].answer)]}</b>
