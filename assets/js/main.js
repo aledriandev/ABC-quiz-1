@@ -53,6 +53,8 @@ const app = {
     },
 
     next: function () {
+        let vehicles = ['assets/img/2.svg','assets/img/3.svg','assets/img/4.svg','assets/img/5.svg','assets/img/5.svg'];
+        $('#vehicle').attr({src:`${vehicles[app.num-1]}`})
         let progressText = `${app.num} of 5 answered`;
         $('#textProgress').html(progressText);
         $('#progressBar').empty();
@@ -90,10 +92,8 @@ const app = {
         let check = `<img class='check' src='assets/img/check.ico'>`;
         $("button").click((e)=>{
             let id = e.target.parentNode.id;
-
-
-
             $(`#check${e.target.parentNode.id}`).append(check);
+            // $(`#check${e.target.parentNode}`).css('background-color','#8C8CAD');
             app.answers.push({
                 question: app.num,
                 answer: id
@@ -109,25 +109,25 @@ const app = {
     },
 
     allAnswers: function() {
+        $('#game').hide();
         let title = `<h3>Here are you answers:</h3>`;
-        $('#abc-game').append(title);
+        $('#result').append(title);
         for( let index in app.answers){
             let list = `<p>${parseInt(index)+1}. ${app.allQuestions['question'+(parseInt(index)+1)].question}: 
             <b>${app.allQuestions['question'+(parseInt(index)+1)].choices[parseInt(app.answers[index].answer)]}</b></p>`;
-            $('#abc-game').append(list);
+            $('#result').append(list);
         }
-        let submit = `<button id='submitAnswers'>Submit</button>`;
-        $('#abc-game').append(submit);
+        let submit = `<button class='btn-quiz'  id='submitAnswers'>Submit</button>`;
+        $('#result').append(submit);
         $('#submitAnswers').click(app.submitAnswers);
-        $('#game').hide();
     },
 
     submitAnswers: function() {
-        $('#abc-game').empty();
+        $('#result').hide();
         let correct = app.correct.length;
         let total = app.answers.length;
         let title = `<h3>${correct} out of ${total} correct!</h3>`;
-        $('#abc-game').append(title);
+        $('#again').append(title);
         for( let i in app.answers){
             
             let list = ``;
@@ -143,11 +143,11 @@ const app = {
                             ${app.allQuestions['question'+(parseInt(i)+1)].choices[0]}
                         </p>`;
             }
-            $('#abc-game').append(list);
+            $('#again').append(list);
            
         }
-        let again = `<button class='btn-' id='startAgain'>Start Again</button>`;
-        $('#abc-game').append(again);
+        let again = `<button class='btn-quiz' id='startAgain'>Start Again</button>`;
+        $('#again').append(again);
         $('#startAgain').click(app.startAgain);
     }
 }

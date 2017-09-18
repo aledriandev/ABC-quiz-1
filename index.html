@@ -14,17 +14,26 @@
 </head>
 <body>
 
-    <section class="container" id="abc-game">
-        <span id=""><img id="prev" src="assets/img/left.svg" alt=""></span>
-        <span id=""><img id="next" src="assets/img/right.svg" alt=""></span>
-        <div class="text-center" id="game">
-            <img src="assets/img/1.svg" alt="">
+    <section class="container">
+        <div id="abc-game">
+            <span id=""><img id="prev" src="assets/img/left.svg" alt=""></span>
+            <span id=""><img id="next" src="assets/img/right.svg" alt=""></span>
+            <img id='vehicle' src="assets/img/1.svg" alt="">
             <p id="textProgress">0 of 5 answered</p>
             <div id='progressBar' class="progress progress-striped">
                 <div class="progress-bar progress-bar-success" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div>
             </div>
-            <h4 id="question"></h4>
-            <div id="choices" class="row text-center"></div>
+            <div class="bg-white text-center" id="game">
+                <h4 id="question"></h4>
+                <div id="choices" class="row text-center"></div>
+                <div id="social">
+                    <div class='circle'><i class="fa fa-twitter" aria-hidden="true"></i></div>
+                    <div class='circle'><i class="fa fa-facebook" aria-hidden="true"></i></div>
+                    <div class='circle'><i class="fa fa-google-plus" aria-hidden="true"></i></div>
+                </div>
+            </div>
+            <div class="bg-white text-center" id="result"></div>
+            <div class="bg-white text-center" id="again"></div>
         </div>
     </section>
 
