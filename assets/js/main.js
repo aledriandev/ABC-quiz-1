@@ -38,8 +38,9 @@ const app = {
         for(let j in Qchoices){
             let options =   
                 `<div class='col-lg-4 col-md-4 col-sm-6 col-xs-12'>
-                    <button class='btn-question' id='${j}'>
+                    <button class='btn-question' id='${choice[j]}'>
                         <img class='letter' src=${letters[j]} alt=""><p>${Qchoices[choice[j]]}</p><img class='check' src='assets/img/check.ico'>
+                        <div class='div-option'></div>
                     </button>
                 </div>`;
             $('#choices').append(options);
@@ -47,12 +48,17 @@ const app = {
     },
 
     next: function () {
-        $('#question').empty();
-        $('#choices').empty();
-        app.num ++;
-        app.showQuestions();
-        console.log(app.num);
-        app.answersUser();
+        if(app.num == 5){
+            app.allAnswers();
+        } else {
+            $('#question').empty();
+            $('#choices').empty();
+            app.num ++;
+            app.showQuestions();
+            // console.log(app.num);
+            app.answersUser();
+            
+        }
     },
 
     prev: function () {
@@ -60,7 +66,7 @@ const app = {
         $('#choices').empty();
         app.num --;
         app.showQuestions();
-        console.log(app.num);
+        // console.log(app.num);
         app.answersUser();
     },
 
@@ -68,24 +74,36 @@ const app = {
         app.next();
     },
     
-    answersUser : function () {
+    answersUser: function () {
         $("button").click((e)=>{
-            console.log(e.target.id);
+            console.log(e.target.parentNode.id);
             app.answers.push({
                 question: app.num,
-                answer: e.target.id
+                answer: e.target.parentNode.id
             });
-            let check = `<img src='assets/img/check.ico'>`;
-            setTimeout(function() {
-                e.target.fadeIn(1500);
-            },1000);
-            setTimeout(app.chosen,1000);
+            
+            // $(`this:parent:nth-child(3)`).show(200);
+            // setTimeout(app.chosen,1000);
+         
+            
         })
     },
+
+    allAnswers: function() {
+        let title = `<h3>Here are you answers:</h3>`;
+        $('#abc-game').append(title);
+        let option = app.allQuestions;
+        for( let index in app.answers){
+            let list = `<p>${index}. ${app.allQuestions['question'+(parseInt(index)+1)].question}: <b>${app.allQuestions['question'+(parseInt(index)+1)].choices[parseInt(app.answers[index].answer)]}</b></p>`;
+            $('#abc-game').append(list);
+        }
+        // $('#game').hide();
+    }
 }
 
 $(document).ready(function(){
     app.showQuestions();
     app.setup();
     app.answersUser();
+    // $('.check').hide();
 });

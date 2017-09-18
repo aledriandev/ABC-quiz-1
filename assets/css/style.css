@@ -30,6 +30,17 @@ body{
     font-family: 'Oswald';
     font-size: 200%;
     font-weight: bold;
+    margin:20px 0;
+    position: relative;
+}
+
+.div-option{
+    width: 100%;
+    position: absolute;
+    background: transparent;
+    top: 0;
+    left: 0;
+    height: 100%;
 }
 
 .btn-answer{
@@ -37,6 +48,10 @@ body{
 }
 
 .btn-question .check{
+    width: 35px;
+}
+
+.div-check{
     width: 35px;
 }
 
